@@ -3,6 +3,9 @@ const axios = require('axios');
 const app = express();
 const PORT = process.env.PORT || 8081;
 
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 app.get('/', async (req, res) => {
   const aboutme = `{
 "slackUsername": "oluwagreat",
@@ -15,12 +18,36 @@ app.get('/', async (req, res) => {
 });
 
 
-//app.use(express.json()); // for parsing application/json
-//app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
 app.post("/maths", function (req, res) {
   console.log(req.body);
   res.json(req.body);
+
+let operation_type = req.body.operation_type;
+let x = parseInt(req.body.x);
+let y = parseInt(req.body.y);
+
+if (operation_type === 'addition' ) {
+   let answer = x + y;
+}
+if (operation_type === 'subtraction') {
+  let answer = x - y;
+}
+if (operation_type === 'multiplication') {
+  let answer = x * y;
+}
+
+let finalResponse = {
+  slackUsername: "oluwagreat", "operation_type" : operation_type, "result": answer 
+}
+
+finalResponse = JSON.stringify(finalResponse);
+
+res.send(finalResponse);
+
+
+
+
+
 });
 
 app.listen(PORT, () => {
