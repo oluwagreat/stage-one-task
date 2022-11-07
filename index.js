@@ -14,6 +14,15 @@ app.get('/', async (req, res) => {
   res.send(aboutme);
 });
 
+
+//app.use(express.json()); // for parsing application/json
+//app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+app.post("/maths", function (req, res) {
+  console.log(req.body);
+  res.json(req.body);
+});
+
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
 });
