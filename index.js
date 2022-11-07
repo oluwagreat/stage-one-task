@@ -19,21 +19,22 @@ app.get('/', async (req, res) => {
 
 
 app.post("/maths", function (req, res) {
-  console.log(req.body);
-  res.json(req.body);
+//  console.log(req.body);
+ // res.json(req.body);
 
 let operation_type = req.body.operation_type;
 let x = parseInt(req.body.x);
 let y = parseInt(req.body.y);
+let answer = 0;
 
 if (operation_type === 'addition' ) {
-   let answer = x + y;
+    answer = x + y;
 }
 if (operation_type === 'subtraction') {
-  let answer = x - y;
+   answer = x - y;
 }
 if (operation_type === 'multiplication') {
-  let answer = x * y;
+   answer = x * y;
 }
 
 let finalResponse = {
