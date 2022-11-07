@@ -22,8 +22,8 @@ app.post("/maths", function (req, res) {
 //  console.log(req.body);
  // res.json(req.body);
 
-let operation_type = req.body.operation_type;
-let x = parseInt(req.body.x);
+let operation_type = req.body.operation_type || "invalid operation_type";
+let x = parseInt(req.body.x) ;
 let y = parseInt(req.body.y);
 let answer = 0;
 
@@ -38,14 +38,14 @@ if (operation_type === 'multiplication') {
 }
 
 let finalResponse = {
-  slackUsername: "oluwagreat", "operation_type" : operation_type, "result": answer 
+  "slackUsername": "oluwagreat", "operation_type" : operation_type, "result": answer 
 }
 
-finalResponse = JSON.stringify(finalResponse);
+//finalResponse = JSON.stringify(finalResponse);
 
-res.send(finalResponse);
-
-
+//res.send(finalResponse);
+res.set("Content-Type", "application/json");
+ res.status(200).json(finalResponse);
 
 
 
